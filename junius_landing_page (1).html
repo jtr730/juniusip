@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JUNIUS: Royalty Recovery & Music Business Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#2B2B2C;
+    --ink:#EFE6D3;
+    --ink-dim:rgba(239,230,211,0.66);
+    --accent:#9C9C96;
+    --green:#2FA06B;
+    --rule:rgba(239,230,211,0.16);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.7;
+    font-size:17px;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    opacity:0.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat:repeat;
+  }
+  ::selection{ background: var(--accent); color: #2B2B2C; }
+
+  .wrap{
+    position:relative; z-index:1;
+    max-width:640px;
+    margin:0 auto;
+    padding:100px 32px 100px;
+  }
+
+  .logo-mark{
+    width:112px; height:112px;
+    display:block;
+  }
+
+  .top-row{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    margin-bottom:44px;
+  }
+  .memo-tab{
+    font-family:'Inter', sans-serif; font-weight:600; font-size:12px;
+    letter-spacing:0.08em; text-transform:uppercase;
+    color: var(--ink-dim); text-decoration:none;
+    border:1px solid var(--rule); border-radius:20px;
+    padding:9px 16px; margin-top:8px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space:nowrap;
+  }
+  .memo-tab:hover{ color: var(--ink); border-color: var(--accent); }
+
+  .eyebrow{
+    font-size:11px; letter-spacing:0.22em; text-transform:uppercase;
+    color: var(--ink); margin-bottom:32px; font-weight:700;
+    padding-bottom:16px; border-bottom:3px solid var(--accent);
+    display:inline-block;
+  }
+
+  h1{
+    font-family:'Archivo Black', sans-serif; font-weight:400;
+    font-size:clamp(36px, 6vw, 58px); line-height:1.02; letter-spacing:-0.02em;
+    margin-bottom:36px;
+    text-transform:uppercase;
+  }
+  h1 em{ font-style:normal; color: #5C6B5F; }
+
+  p{
+    font-size:16.5px; line-height:1.85; color: var(--ink);
+    margin-bottom:22px;
+    font-weight:400;
+  }
+  p:last-of-type{ margin-bottom:0; }
+
+  h2{
+    font-family:'Archivo Black', sans-serif; font-weight:400;
+    font-size:22px; line-height:1.2; letter-spacing:-0.005em;
+    text-transform:uppercase; margin-bottom:28px; margin-top:64px;
+  }
+
+  .flow-box{
+    border:1px solid var(--rule);
+    border-radius:8px;
+    padding:20px 16px;
+    margin-bottom:8px;
+    overflow-x:auto;
+  }
+  .flow-diagram{
+    width:100%; min-width:520px; height:auto; display:block;
+  }
+
+  .steps{
+    display:grid; grid-template-columns: 1fr 1fr; gap:28px 24px;
+    margin-bottom:0;
+  }
+  .step{
+    border-top:1px solid var(--rule); padding-top:18px;
+  }
+  .step h3{
+    font-family:'Inter', sans-serif; font-weight:800; font-size:15px;
+    letter-spacing:0.1em; text-transform:uppercase; color: var(--ink);
+    margin-bottom:10px;
+  }
+  .step p{ font-size:14px; line-height:1.65; margin-bottom:0; }
+
+  .cta{
+    margin-top:64px;
+    padding-top:40px;
+    border-top:1px solid var(--rule);
+  }
+  a.btn{
+    font-family:'Inter', sans-serif; font-weight:600; font-size:13.5px;
+    color: #2B2B2C; background: var(--green);
+    padding:16px 32px; text-decoration:none; display:inline-block;
+    letter-spacing:0.1em; text-transform:uppercase;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+  a.btn:hover{ background: var(--ink); color: var(--bg); transform: translateY(-1px); }
+  .cta-note{
+    font-size:12.5px; color: var(--ink-dim); margin-top:16px; opacity:0.65;
+    letter-spacing:0.03em;
+  }
+
+  .founder-tab{
+    margin-top:64px;
+    padding-top:40px;
+    border-top:1px solid var(--rule);
+  }
+  .founder-tab p:last-of-type{ margin-bottom:20px; }
+  .founder-email{
+    font-family:'Inter', sans-serif; font-weight:600; font-size:13.5px;
+    color: var(--ink); text-decoration:none;
+    border-bottom:1px solid var(--rule);
+    padding-bottom:3px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .founder-email:hover{ color: var(--green); border-color: var(--green); }
+
+  footer{
+    max-width:640px;
+    margin:0 auto;
+    padding:0 32px 70px;
+    font-size:11px;
+    color: var(--ink-dim);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    opacity:0.6;
+  }
+  .ig-link{
+    color: inherit;
+    text-decoration:none;
+    display:inline-flex;
+    vertical-align:middle;
+    transition: transform 0.2s ease;
+  }
+  .ig-link:hover{ transform: scale(1.15); }
+  .ig-icon{ width:19px; height:19px; }
+
+  @media (max-width:480px){
+    .steps{ grid-template-columns:1fr; }
+    .top-row{ flex-direction:column; gap:16px; }
+    .memo-tab{ margin-top:0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top-row">
+    <svg class="logo-mark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="38" stroke="#EFE6D3" stroke-width="1.6" fill="none"/>
+      <text x="60" y="65" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="13" fill="#EFE6D3">JUNIUS</text>
+      <g fill="#EFE6D3">
+        <circle cx="98" cy="60" r="4"/>
+        <circle cx="79" cy="92.9" r="4"/>
+        <circle cx="41" cy="92.9" r="4"/>
+        <circle cx="22" cy="60" r="4"/>
+        <circle cx="41" cy="27.1" r="4"/>
+        <circle cx="79" cy="27.1" r="4"/>
+        <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="9s" repeatCount="indefinite"/>
+      </g>
+    </svg>
+    <a class="memo-tab" href="founding_memorandum.html">Founding Memorandum</a>
+  </div>
+
+  <div class="eyebrow">Royalty Recovery, Rights &amp; Catalog Advisory</div>
+
+  <h1>We recover <em>what was always yours.</em></h1>
+
+  <p>
+    Unlike royalty collection tools built purely around automated audits, JUNIUS pairs
+    that recovery work with real consultation, rights management, and catalog advisory,
+    treating the money we find as the starting point of a lasting financial foundation,
+    not the end of the engagement.
+  </p>
+
+  <p>
+    JUNIUS exists because the artists who built the foundation of American music, music
+    that shaped culture across the world, were routinely underpaid, under-registered, and
+    overlooked by an industry that profited from their work. That debt has never been
+    settled.
+  </p>
+
+  <p>
+    JUNIUS combines royalty recovery, rights management, business administration, and
+    catalog advisory to help artists and heirs understand what they own, what they're
+    owed, and how to protect it for generations to come. Recovery is just the start. We
+    make sure the knowledge stays with you, because understanding your own catalog is
+    part of what keeps it protected. In many ways, JUNIUS isn't simply a music business
+    company. It's an economic empowerment and legacy preservation company, dedicated to
+    helping creators reclaim what was always theirs.
+  </p>
+
+  <h2>What We Catch</h2>
+  <div class="flow-box">
+    <svg class="flow-diagram" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#9C9C96"/>
+        </marker>
+      </defs>
+
+      <!-- three problem nodes -->
+      <g font-family="Inter, sans-serif" font-size="12.5" fill="#EFE6D3">
+        <rect x="10" y="10" width="150" height="42" rx="4" stroke="#9C9C96" stroke-width="1.2" fill="none"/>
+        <text x="85" y="35" text-anchor="middle">Incorrect Registration</text>
+
+        <rect x="10" y="89" width="150" height="42" rx="4" stroke="#9C9C96" stroke-width="1.2" fill="none"/>
+        <text x="85" y="114" text-anchor="middle">Metadata Errors</text>
+
+        <rect x="10" y="168" width="150" height="42" rx="4" stroke="#9C9C96" stroke-width="1.2" fill="none"/>
+        <text x="85" y="193" text-anchor="middle">Uncollected Royalties</text>
+      </g>
+
+      <!-- lines into JUNIUS -->
+      <g fill="none" stroke="#9C9C96" stroke-width="1.2" stroke-opacity="0.6">
+        <path d="M160,31 C230,31 230,110 300,110" marker-end="url(#arrow)"/>
+        <path d="M160,110 C230,110 230,110 300,110" marker-end="url(#arrow)"/>
+        <path d="M160,189 C230,189 230,110 300,110" marker-end="url(#arrow)"/>
+      </g>
+
+      <!-- JUNIUS node -->
+      <circle cx="330" cy="110" r="34" stroke="#EFE6D3" stroke-width="1.6" fill="#2B2B2C"/>
+      <text x="330" y="115" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="13" fill="#EFE6D3">JUNIUS</text>
+
+      <!-- six rotating dots around the JUNIUS node, echoing the logo -->
+      <g fill="#EFE6D3">
+        <circle cx="364" cy="110" r="4"/>
+        <circle cx="347" cy="139.4" r="4"/>
+        <circle cx="313" cy="139.4" r="4"/>
+        <circle cx="296" cy="110" r="4"/>
+        <circle cx="313" cy="80.6" r="4"/>
+        <circle cx="347" cy="80.6" r="4"/>
+        <animateTransform attributeName="transform" type="rotate" from="0 330 110" to="360 330 110" dur="9s" repeatCount="indefinite"/>
+      </g>
+
+      <!-- line out to result -->
+      <path d="M364,110 L470,110" stroke="#2FA06B" stroke-width="1.4" fill="none" marker-end="url(#arrow)"/>
+
+      <!-- result node -->
+      <rect x="478" y="83" width="112" height="54" rx="4" stroke="#2FA06B" stroke-width="1.6" fill="none"/>
+      <text x="534" y="107" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#2FA06B">Money You</text>
+      <text x="534" y="123" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#2FA06B">Get Back</text>
+
+      <!-- traveling dots -->
+      <circle r="3" fill="#EFE6D3">
+        <animateMotion dur="3s" repeatCount="indefinite" path="M160,31 C230,31 230,110 300,110 L364,110 L470,110"/>
+      </circle>
+      <circle r="3" fill="#EFE6D3">
+        <animateMotion dur="3s" begin="1s" repeatCount="indefinite" path="M160,110 L300,110 L364,110 L470,110"/>
+      </circle>
+      <circle r="3" fill="#EFE6D3">
+        <animateMotion dur="3s" begin="2s" repeatCount="indefinite" path="M160,189 C230,189 230,110 300,110 L364,110 L470,110"/>
+      </circle>
+    </svg>
+  </div>
+
+  <h2>How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <h3>Find</h3>
+      <p>We trace missing and misallocated royalties across catalogs, DSPs, and PRO registries.</p>
+    </div>
+    <div class="step">
+      <h3>Consult</h3>
+      <p>Direct, face to face video calls where we walk you through a clear, itemized breakdown of your catalog, ownership, and outstanding value, yours to keep afterward.</p>
+    </div>
+    <div class="step">
+      <h3>Build</h3>
+      <p>We can help set up the rights management and business administration most independent catalogs never had.</p>
+    </div>
+    <div class="step">
+      <h3>Preserve</h3>
+      <p>We connect artists and heirs to the tools that keep recovered value in the family for years to come.</p>
+    </div>
+  </div>
+
+  <div class="cta">
+    <a class="btn" href="https://gatefolded.com/intake/juniuslegacyasessment" target="_blank">Start the Intake Form</a>
+    <div class="cta-note">Free to start. No cost, no obligation.</div>
+  </div>
+
+  <div class="founder-tab">
+    <p style="font-size:14px;">
+      If you're interested to learn more or would like to speak, please drop us an email
+      at <a class="founder-email" href="mailto:jules@juniusip.com">jules@juniusip.com</a>.
+    </p>
+  </div>
+</div>
+
+<footer>
+  JUNIUS &middot; Royalty Recovery, Rights &amp; Catalog Advisory &middot; Los Angeles, CA &middot; <a href="https://www.instagram.com/junius.ip?igsi=NTc4MTIwNjQ2YQ%3D%3D" target="_blank" class="ig-link" aria-label="JUNIUS on Instagram"><svg class="ig-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="igGrad" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#FEDA75"/><stop offset="30%" stop-color="#D62976"/><stop offset="65%" stop-color="#962FBF"/><stop offset="100%" stop-color="#4F5BD5"/></linearGradient></defs><rect x="3" y="3" width="18" height="18" rx="5" stroke="url(#igGrad)" stroke-width="1.5"/><circle cx="12" cy="12" r="4.2" stroke="url(#igGrad)" stroke-width="1.5"/><circle cx="17.2" cy="6.8" r="1.1" fill="url(#igGrad)"/></svg></a>
+</footer>
+
+</body>
+</html>
