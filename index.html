@@ -104,7 +104,7 @@
     overflow-x:auto;
   }
   .flow-diagram{
-    width:100%; min-width:520px; height:auto; display:block;
+    width:100%; height:auto; display:block;
   }
 
   /* MOBILE-FRIENDLY VERTICAL FALLBACK (hidden on desktop) */
@@ -120,22 +120,15 @@
     text-align:center;
     margin-bottom:10px;
   }
-  .fm-arrow{
-    text-align:center;
-    color: var(--accent);
-    font-size:20px;
-    margin-bottom:10px;
-    line-height:1;
+  .fm-connector{
+    display:flex;
+    justify-content:center;
+    margin-bottom:2px;
   }
-  .fm-junius{
-    border:2px solid var(--ink);
-    border-radius:8px;
-    padding:16px 18px;
-    text-align:center;
-    font-family:'Archivo Black', sans-serif;
-    font-size:16px;
-    margin-bottom:10px;
-    letter-spacing:0.02em;
+  .fm-junius-graphic{
+    width:96px; height:96px;
+    display:block;
+    margin:0 auto 2px;
   }
   .fm-result{
     border:2px solid var(--green);
@@ -262,8 +255,7 @@
   .ig-icon{ width:19px; height:19px; }
 
   @media (max-width:600px){
-    .flow-box{ display:none; }
-    .flow-mobile{ display:block; }
+    .flow-mobile{ display:none; }
   }
 
   @media (max-width:480px){
@@ -395,9 +387,41 @@
     <div class="fm-box">Incorrect Registration</div>
     <div class="fm-box">Metadata Errors</div>
     <div class="fm-box">Uncollected Royalties</div>
-    <div class="fm-arrow">&#8595;</div>
-    <div class="fm-junius">JUNIUS</div>
-    <div class="fm-arrow">&#8595;</div>
+
+    <div class="fm-connector">
+      <svg viewBox="0 0 40 60" width="40" height="60">
+        <line x1="20" y1="0" x2="20" y2="52" stroke="#6E6A5C" stroke-width="1.4"/>
+        <path d="M13,44 L20,54 L27,44" fill="none" stroke="#6E6A5C" stroke-width="1.4"/>
+        <circle r="3" fill="#1D1C19">
+          <animateMotion dur="2.2s" repeatCount="indefinite" path="M20,0 L20,52"/>
+        </circle>
+      </svg>
+    </div>
+
+    <svg class="fm-junius-graphic" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="38" stroke="#1D1C19" stroke-width="1.6" fill="none"/>
+      <text x="60" y="65" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="13" fill="#1D1C19">JUNIUS</text>
+      <g fill="#1D1C19">
+        <circle cx="98" cy="60" r="4"/>
+        <circle cx="79" cy="92.9" r="4"/>
+        <circle cx="41" cy="92.9" r="4"/>
+        <circle cx="22" cy="60" r="4"/>
+        <circle cx="41" cy="27.1" r="4"/>
+        <circle cx="79" cy="27.1" r="4"/>
+        <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="9s" repeatCount="indefinite"/>
+      </g>
+    </svg>
+
+    <div class="fm-connector">
+      <svg viewBox="0 0 40 60" width="40" height="60">
+        <line x1="20" y1="0" x2="20" y2="52" stroke="#2FA06B" stroke-width="1.4"/>
+        <path d="M13,44 L20,54 L27,44" fill="none" stroke="#2FA06B" stroke-width="1.4"/>
+        <circle r="3" fill="#2FA06B">
+          <animateMotion dur="2.2s" repeatCount="indefinite" path="M20,0 L20,52"/>
+        </circle>
+      </svg>
+    </div>
+
     <div class="fm-result">Money You Get Back</div>
   </div>
 
