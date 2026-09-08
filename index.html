@@ -480,9 +480,13 @@
   if (window.location.search.includes('sent=1')) {
     var formWrap = document.getElementById('ec-form-wrap');
     var thanks = document.getElementById('ec-thanks');
+    var capture = document.getElementById('email-capture');
     if (formWrap && thanks) {
       formWrap.style.display = 'none';
       thanks.style.display = 'block';
+    }
+    if (capture) {
+      capture.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     var cleanUrl = window.location.origin + window.location.pathname;
     window.history.replaceState({}, document.title, cleanUrl);
